@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--
+      android:state_pressed="true":当控件处于按下状态时显示的图片为@android:drawable/ic_delete
+      android:state_pressed="false":当控件处于未按下状态时显示的图片为@android:drawable/ic_btn_speak_now
+     -->
+    <item android:drawable="@android:drawable/ic_delete" android:state_pressed="true"/>
+
+    <item android:drawable="@android:drawable/ic_btn_speak_now" android:state_pressed="false"/>
+</selector>

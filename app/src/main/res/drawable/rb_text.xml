@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+      android:state_checked="true":当控件处于选中状态时显示颜色#BAD85C
+       android:state_checked="true":当控件处于未选中状态时显示颜色#666666
+     -->
+    <item android:state_checked="true" android:color="#BAD85C"></item>
+    <item android:state_checked="false" android:color="#666666"></item>
+
+</selector>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <color name="blue">#99D9EA</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#eaeaea</color>
+    <color name="orange">#FF8040</color>
+    <color name="green">#A4FFD1</color>
+   <color name="red">#ff0000</color>
+    <color name="bg_grey">#eaeaea</color>
+    <color name="yellow">#ffff00</color>
+    <color name="colorGray">#b3cccccc</color>
+    <color name="colorWhite">#ffffff</color>
+
+    
+    <!-- ZXing Android (start)-->
+    <color name="contents_text">#ff000000</color>
+    <color name="encode_view">#ffffffff</color>
+    <color name="possible_result_points">#c0ffbd21</color>
+    <color name="result_minor_text">#60000000</color>
+    <color name="result_points">#c099cc00</color>
+    <color name="result_text">#ffffffff</color>
+    <color name="result_view">#b0000000</color>
+    <color name="status_text">#ffffffff</color>
+    <color name="viewfinder_laser">#ffcc0000</color> 
+    <color name="capture_text_cover_bg">#99535353</color>
+    <color name="seek_bar_text">#fff6f6f6</color>    
+    <!-- ZXing Android (end)-->   
+    
+</resources>

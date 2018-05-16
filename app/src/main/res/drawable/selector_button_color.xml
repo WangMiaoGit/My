@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--
+    android:state_pressed="true":当控件处于按下状态时显示的颜色为@android:color/holo_green_dark
+    android:state_pressed="false":当控件处于未按下状态时显示的颜色为android:color="@android:color/holo_red_dark"
+    -->
+    <item android:color="@android:color/holo_green_dark" android:state_pressed="true"/>
+    <item android:color="@android:color/holo_red_dark" android:state_pressed="false"/>
+</selector>

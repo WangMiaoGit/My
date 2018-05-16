@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/favorite"
+            android:checkable="true"
+            android:icon="@mipmap/v"
+            android:title="    会员" />
+
+        <item
+            android:id="@+id/wallet"
+            android:icon="@mipmap/wa"
+
+            android:title="    钱包" />
+        <item
+            android:id="@+id/photo"
+            android:icon="@mipmap/photo"
+            android:title="    相册" />
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/file"
+            android:icon="@mipmap/file"
+            android:title="    文件" />
+        <item
+            android:id="@+id/setting"
+            android:icon="@mipmap/settings"
+            android:title="    设定" />
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/file1"
+            android:icon="@mipmap/file"
+            android:title="    文件" />
+        <item
+            android:id="@+id/setting1"
+            android:icon="@mipmap/settings"
+            android:title="    设定" />
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/file2"
+            android:icon="@mipmap/file"
+            android:title="    文件" />
+        <item
+            android:id="@+id/setting2"
+            android:icon="@mipmap/settings"
+            android:title="    设定" />
+    </group>
+</menu>

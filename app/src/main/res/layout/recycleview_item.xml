@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    android:id="@+id/cardview"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+
+    android:foreground="?android:attr/selectableItemBackground"
+    >
+  <!--  android:cardConerRadius="10sp"
+    android:cardElevation="8dp"
+    android:cardBackgroundColor="@color/white"-->
+    <ImageView
+        android:id="@+id/recycleView_item"
+        android:src="@mipmap/ic_launcher"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</android.support.v7.widget.CardView>
