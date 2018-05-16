@@ -11,7 +11,7 @@ import com.ricoh.wm.my.collector.ActivityCollector;
 
 public class BaseActivity extends AppCompatActivity {
 
-    //111111111111111
+    //1AAAAA
     private ForceOffLineReceiver receiver;
     private String action="android.intent.action.FORCE_OFFLINE";
     @Override
