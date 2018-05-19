@@ -5,8 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
-import com.ricoh.wm.my.activity.MainActivity;
-import com.ricoh.wm.my.activity.WelcomeActivity;
+import com.ricoh.wm.my.welcome.WelcomeActivity;
 
 /**
  * 开机自启的 广播接收者

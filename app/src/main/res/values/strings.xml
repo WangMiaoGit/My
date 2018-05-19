@@ -153,5 +153,6 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Send Local BroadCast</string>
+    <string name="shock">震动</string>
 
 </resources>

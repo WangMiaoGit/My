@@ -1,4 +1,4 @@
-package com.ricoh.wm.my.activity;
+package com.ricoh.wm.my.welcome;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.ricoh.wm.my.R;
+import com.ricoh.wm.my.activity.LoginActivity;
 
 public class WelcomeActivity extends AppCompatActivity {
     private static final int TIME=500;

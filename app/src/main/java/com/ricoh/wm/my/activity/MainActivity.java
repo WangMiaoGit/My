@@ -1,14 +1,18 @@
 package com.ricoh.wm.my.activity;
 
 
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
+import android.content.DialogInterface;
 import android.content.IntentFilter;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +23,8 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
@@ -41,6 +47,8 @@ import com.ricoh.wm.my.fragment.Fragment_two;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -68,8 +76,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
 
 
-    private IntentFilter intentFilter;
-    private NetworkChangeReceiver networkChangeReceiver;
+//    private IntentFilter intentFilter;
+//    private NetworkChangeReceiver networkChangeReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,13 +90,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         initAdapter();
         initAction();
 
-        initBroadCast();
+//        initBroadCast();
 
         System.out.println("当前手机的android版本号" + Build.VERSION.RELEASE);
 
     }
 
-    private void initBroadCast() {
+    //初始化广播接受者
+/*    private void initBroadCast() {
         //构建意图过滤器
         intentFilter = new IntentFilter();
         //添加要接收的广播
@@ -96,12 +105,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         networkChangeReceiver = new NetworkChangeReceiver();
         //注册广播传入一个BroadcastReceiver子类实现onReceive方法，还有意图过滤器
         registerReceiver(networkChangeReceiver, intentFilter);
-    }
+    }*/
 
     private void initAdapter() {
         viewPagerIndex.setAdapter(new MyFragmentAdapter(getSupportFragmentManager(), fragmentList));
     }
 
+    //初始化viewpager中的fragment
     private void initData() {
         fragmentList = new ArrayList<>();
         Fragment fragment_one = new Fragment_one();
@@ -116,6 +126,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         fragmentList.add(fragment_four);
     }
 
+    //viewpager和切换
     private void initAction() {
 
         radioGroupIndex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -360,13 +371,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected void onDestroy() {
         super.onDestroy();
         //注销广播接收者
-        unregisterReceiver(networkChangeReceiver);
+//        unregisterReceiver(networkChangeReceiver);
     }
 
     /**
      * 网络切换的广播接收者
      */
-    class NetworkChangeReceiver extends BroadcastReceiver {
+   /* class NetworkChangeReceiver extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -375,12 +386,83 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
             if (activeNetworkInfo != null && activeNetworkInfo.isAvailable()) {
 
+
                 Toast.makeText(context, "Network is available", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(context, "Network is unavailable", Toast.LENGTH_SHORT).show();
+
+                Snackbar snackBar = Snackbar.make(getWindow().getDecorView(), "网络连接断开！！！", Snackbar.LENGTH_LONG);
+                //设置SnackBar背景颜色
+                snackBar.getView().setBackgroundResource(R.color.red);
+                //设置按钮文字颜色
+                snackBar.setActionTextColor(Color.WHITE);
+                snackBar.show();
+//                Toast.makeText(context, "Network is unavailable", Toast.LENGTH_SHORT).show();
+
             }
 
         }
+    }*/
+
+
+
+
+    //判断是否点击了退出键的判断标志
+    private static Boolean isExit = false;
+
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+            if (event.getAction() == KeyEvent.ACTION_DOWN
+                    && event.getRepeatCount() == 0) {
+                exitBy2Click();
+
+            }
+            return true;
+        }
+        return super.dispatchKeyEvent(event);
+    }
+
+    /**
+     * 两次点击退出
+     */
+    private void exitBy2Click() {
+        Timer tExit;
+        if (!isExit) {
+            isExit = true;
+
+            tExit = new Timer();
+            tExit.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    isExit = false;
+                }
+            }, 2000);
+        } else {
+            isExit();
+        }
+    }
+
+    /**
+     * 退出时的对话框
+     */
+
+    private void isExit() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(this.getResources().getString(R.string.main_code_sure_quit));
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_exit, null);
+        builder.setView(view);
+
+        builder.setPositiveButton(this.getResources().getString(R.string.main_code_quit), new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                finish();
+            }
+        });
+        builder.setNegativeButton(this.getResources().getString(R.string.main_code_cancel), null);
+        builder.create();
+        builder.show();
     }
 }
 

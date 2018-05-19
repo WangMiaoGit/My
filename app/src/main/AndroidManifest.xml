@@ -12,6 +12,9 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
+    <!-- 震动 -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -20,14 +23,14 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.BaseActivity" />
-        <activity android:name=".activity.WelcomeActivity">
+        <activity android:name=".welcome.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.GuideActivity" />
+        <activity android:name=".welcome.GuideActivity" />
         <activity
             android:name=".activity.LoginActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />

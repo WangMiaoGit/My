@@ -1,10 +1,6 @@
-package com.ricoh.wm.my.activity;
+package com.ricoh.wm.my.welcome;
 
 import android.content.Intent;
-import android.os.SystemClock;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.ricoh.wm.my.R;
+import com.ricoh.wm.my.activity.LoginActivity;
 
 import java.util.ArrayList;
 import java.util.List;
