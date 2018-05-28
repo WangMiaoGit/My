@@ -14,6 +14,8 @@
 
     <!-- 震动 -->
     <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- 读取联系人 -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:name=".App"
@@ -56,7 +58,13 @@
         <receiver
             android:name=".broadcastreceiver.ForceOffLineReceiver"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true" />
+
+        <provider
+            android:name=".contentprovider.MyContentProvider"
+            android:authorities="com.ricoh.wm.my.contentprovider"
+            android:enabled="true"
+            android:exported="true"></provider>
     </application>
 
 </manifest>

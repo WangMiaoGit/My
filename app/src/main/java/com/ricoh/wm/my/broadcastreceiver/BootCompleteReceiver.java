@@ -8,7 +8,7 @@ import android.widget.Toast;
 import com.ricoh.wm.my.welcome.WelcomeActivity;
 
 /**
- * 开机自启的 广播接收者
+ * 开机自启的 广播接收者  静态注册
  */
 public class BootCompleteReceiver extends BroadcastReceiver {
 

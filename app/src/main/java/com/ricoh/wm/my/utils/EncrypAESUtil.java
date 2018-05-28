@@ -23,7 +23,7 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 /**
- * @author wang
+ * @author wang AES 加密
  * Created by 2017063001 on 2018/5/19.
  */
 public class EncrypAESUtil {

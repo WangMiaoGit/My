@@ -11,7 +11,7 @@ import com.ricoh.wm.my.activity.LoginActivity;
 import com.ricoh.wm.my.collector.ActivityCollector;
 
 /**
- * 强制下线的广播
+ * 强制下线的广播  动态注册
  */
 public class ForceOffLineReceiver extends BroadcastReceiver {
     public ForceOffLineReceiver() {

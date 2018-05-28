@@ -12,7 +12,7 @@ import com.ricoh.wm.my.R;
 import com.ricoh.wm.my.activity.MainActivity;
 
 /**
- * 本地广播
+ * 本地广播 动态注册
  */
 public class LocalReceiver extends BroadcastReceiver {
     String action = "android.intent.action.LOCAL_BROADCAST";

@@ -90,6 +90,9 @@ public class Fragment_two extends Fragment {
         View view = inflater.inflate(R.layout.fragment_two, container, false);
         ButterKnife.bind(this, view);
 
+        /**
+         * 动态注册本地广播
+         */
         localBroadcastManager = LocalBroadcastManager.getInstance(getContext().getApplicationContext());//获取实例
 
         intentFilter = new IntentFilter();
@@ -119,6 +122,9 @@ public class Fragment_two extends Fragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.button_local:
+                /**
+                 * 发送本地广播，给本地广播接收者接收
+                 */
                 Intent intent = new Intent("android.intent.action.LOCAL_BROADCAST");
                 localBroadcastManager.sendBroadcast(intent);//发送广播
                 break;
@@ -207,6 +213,7 @@ public class Fragment_two extends Fragment {
                 //发送下线广播
                 /**
                  * 异地登录强制下线实现：每次登录上传一个token然后从服务器返回一个信号，检查token，如果不同，强制退出
+                 *
                  */
                 Intent intent1 = new Intent(action);
                 getContext().sendBroadcast(intent1);

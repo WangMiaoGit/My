@@ -154,5 +154,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Send Local BroadCast</string>
     <string name="shock">震动</string>
+    <string name="db">数据库</string>
+    <string name="addDB">增加数据</string>
 
 </resources>

@@ -1,11 +1,21 @@
 apply plugin: 'com.android.application'
 //添加如下代码，应用apt插件
 apply plugin: 'com.neenbedankt.android-apt'
+//greenDao插件
+apply plugin: 'org.greenrobot.greendao'
 
 android {
+    //打包
+    signingConfigs {
+        release {
+            keyAlias 'key'
+            keyPassword 'wangmiao'
+            storeFile file('C:/Program Files/Android/test.jks')
+            storePassword 'wangmiao'
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
-
     defaultConfig {
         applicationId "com.ricoh.wm.my"
         minSdkVersion 17
@@ -18,33 +28,69 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
+    }
+
+
+    greendao {
+        schemaVersion 1 //数据库版本号
+        daoPackage 'com.ricoh.wm.my.greendao'// 设置DaoMaster、DaoSession、Dao 包名
+        targetGenDir 'src/main/java'//设置DaoMaster、DaoSession、Dao目录
     }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    //dagger2
-    apt 'com.google.dagger:dagger-compiler:2.4'
+    testCompile 'junit:junit:4.12'
+
     //java注解
-    //butterknife
-    //retrofit
-    //retrofit添加gson转换器的依赖
-    //NavigationView  5.0新控件
     compile files('libs/systembartint-1.0.4.jar')
-    compile 'com.android.support:appcompat-v7:23.3.0'
-    compile 'com.google.dagger:dagger:2.4'
-    compile 'org.glassfish:javax.annotation:10.0-b28'
+
+    //butterknife
     compile 'com.jakewharton:butterknife:7.0.1'
+
+/*
+    android-apt是Gradle编译器的插件，根据其官方文档，主要两个目的：
+    编译时使用该工具，最终打包时不会将该插件打入到apk中。
+    能够根据设置的源路径，在编译时期生成相应代码。
+*/
+    //dagger2
+    compile 'com.google.dagger:dagger:2.4'
+    apt 'com.google.dagger:dagger-compiler:2.4'
+    compile 'org.glassfish:javax.annotation:10.0-b28'
+
+    //rxJava+rxAndroid
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'io.reactivex:rxjava:1.1.6'
+
     //retrofit
     compile 'com.squareup.retrofit2:retrofit:2.0.1'
-    //retrofit添加gson转换器的依赖
-    compile 'com.squareup.retrofit2:converter-gson:2.0.1'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.1'//retrofit添加gson转换器的依赖
+    compile 'com.squareup.retrofit2:converter-scalars:2.0.1'//ConverterFactory的String依赖包
+
+    //android com.android.support:design库  DrawerLayout+NavigationView
+    compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.android.support:design:23.3.0'
     compile 'com.android.support:support-v4:23.3.0'
+    compile 'com.android.support:recyclerview-v7:23.3.0'
+
     //picasso
     compile 'com.squareup.picasso:picasso:2.5.2'
     //cardview
     compile 'com.android.support:cardview-v7:23.3.0'
+    //greenDao
+    compile 'org.greenrobot:greendao:3.0.1'
+//    compile'android.arch.persistence.room:runtime:1.0.0'
+//    annotationProcessor'android.arch.persistence.room:compiler:1.0.0'
+}
 
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.0.0'
+    }
 }
