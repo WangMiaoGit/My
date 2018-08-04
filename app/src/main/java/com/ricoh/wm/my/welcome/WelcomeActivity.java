@@ -44,10 +44,11 @@ public class WelcomeActivity extends AppCompatActivity {
         SharedPreferences.Editor editor=sf.edit();
         if(isFirstIn){     //若为true，则是第一次进入
             editor.putBoolean("isFirstIn", false);
-            mhandler.sendEmptyMessageDelayed(GO_GUIDE,TIME);//将欢迎页停留5秒，并且将message设置为跳转到                                                             引导页SplashActivity，跳转在goGuide中实现
+            //延时发送
+            mhandler.sendEmptyMessageDelayed(GO_GUIDE,TIME);//将欢迎页停留5秒，并且将message设置为跳转到             引导页SplashActivity，跳转在goGuide中实现
 
         }else{
-            mhandler.sendEmptyMessageDelayed(GO_LOGIN,TIME);//将欢迎页停留5秒，并且将message设置文跳转到                                                                   MainActivity，跳转功能在goMain中实现
+            mhandler.sendEmptyMessageDelayed(GO_LOGIN,TIME);//将欢迎页停留5秒，并且将message设置文跳转到             MainActivity，跳转功能在goMain中实现
         }
         editor.commit();
     }

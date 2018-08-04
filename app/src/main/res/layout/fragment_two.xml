@@ -11,12 +11,7 @@
         android:layout_height="wrap_content"
         android:text="@string/hello_blank_fragment" />
 
-    <Button
-        android:id="@+id/button_not"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:text="通知" />
+
 
     <Button
         android:id="@+id/button_zhiwen"
@@ -31,5 +26,24 @@
         android:layout_height="wrap_content"
         android:textSize="30sp"
         android:text="强制下线" />
+    <Button
+        android:id="@+id/button_not"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:text="通知" />
 
+    <Button
+        android:id="@+id/button_send_notice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:text="点击通知" />
+
+    <Button
+        android:id="@+id/button_camera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:text="点击拍照" />
 </LinearLayout>

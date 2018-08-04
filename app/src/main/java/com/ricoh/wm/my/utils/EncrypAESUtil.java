@@ -30,7 +30,7 @@ public class EncrypAESUtil {
     private final static String HEX = "0123456789ABCDEF";
     private static final int keyLenght = 16;
     private static final String defaultV = "0";
-    public static final String key="101001000";
+    public static final String key="101001000";//密钥
 
     /**
      * 加密
@@ -90,8 +90,8 @@ public class EncrypAESUtil {
     /**
      * 密钥key ,默认补的数字，补全16位数，以保证安全补全至少16位长度,android和ios对接通过
      * @param str 密钥
-     * @param strLength 加密串
-     * @param val   长
+     * @param strLength 长度
+     * @param val   加密串补位串
      * @return s
      */
     private static String toMakekey(String str, int strLength, String val) {

@@ -466,3 +466,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 }
 
+/*
+Error while executing: am start -n "com.ricoh.wm.my/com.ricoh.wm.my.welcome.WelcomeActivity" -a android.intent.action.MAIN -c android.intent.category.LAUNCHER
+        Starting: Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=com.ricoh.wm.my/.welcome.WelcomeActivity }
+        Error type 3
+        Error: Activity class {com.ricoh.wm.my/com.ricoh.wm.my.welcome.WelcomeActivity} does not exist.
+
+        Error while Launching activity*/

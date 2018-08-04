@@ -45,7 +45,6 @@ public class BaseActivity extends AppCompatActivity {
 
     }
 
-
     //注册广播
     @Override
     protected void onResume() {
@@ -97,7 +96,7 @@ public class BaseActivity extends AppCompatActivity {
             if (activeNetworkInfo != null && activeNetworkInfo.isAvailable()) {
 
 
-                Toast.makeText(context, "Network is available", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "Network is available", Toast.LENGTH_SHORT).show();
             } else {
 
                 Snackbar snackBar = Snackbar.make(getWindow().getDecorView(), "网络连接断开！！！", Snackbar.LENGTH_LONG);

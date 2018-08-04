@@ -23,6 +23,12 @@
         android:layout_height="wrap_content"
         android:text="@string/addDB"
         android:textSize="25sp"/>
+    <Button
+        android:id="@+id/btn_webview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="webview"
+        android:textSize="25sp"/>
     <ListView
         android:id="@+id/contacts_view"
         android:layout_width="match_parent"

@@ -4,11 +4,13 @@ package com.ricoh.wm.my.fragment;
 import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
 import android.util.Log;
@@ -23,6 +25,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.ricoh.wm.my.R;
+import com.ricoh.wm.my.activity.CameraActivity;
+import com.ricoh.wm.my.activity.NotificationActivity;
 import com.ricoh.wm.my.broadcastreceiver.LocalReceiver;
 
 import butterknife.Bind;
@@ -44,6 +48,10 @@ public class Fragment_two extends Fragment {
     Button buttonZhiwen;
     @Bind(R.id.button_1)
     Button button1;
+    @Bind(R.id.button_send_notice)
+    Button buttonSendNotice;
+    @Bind(R.id.button_camera)
+    Button buttonCamera;
     /**
      * 意图过滤器
      */
@@ -57,14 +65,6 @@ public class Fragment_two extends Fragment {
      */
     private LocalReceiver localReceiver;
 
-    /**
-     * 通知的管理对象
-     */
-    NotificationManager manager;
-    /**
-     * 通知的id
-     */
-    int notification_id;
 
     //定义notification实用的ID
     private static final int NO_3 = 0x3;
@@ -77,7 +77,8 @@ public class Fragment_two extends Fragment {
     private AlertDialog alertDialog;
 
 
-    private String action="android.intent.action.FORCE_OFFLINE";
+    private String action = "android.intent.action.FORCE_OFFLINE";
+
     public Fragment_two() {
         // Required empty public constructor
     }
@@ -101,7 +102,6 @@ public class Fragment_two extends Fragment {
         localReceiver = new LocalReceiver();
         localBroadcastManager.registerReceiver(localReceiver, intentFilter);//注册本地广播监听器
 
-        manager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
 
         //指纹弹出的
         customizeDialog =
@@ -118,7 +118,7 @@ public class Fragment_two extends Fragment {
         localBroadcastManager.unregisterReceiver(localReceiver);//注销广播监听
     }
 
-    @OnClick({R.id.button_local, R.id.button_not, R.id.button_zhiwen,R.id.button_1})
+    @OnClick({R.id.button_local, R.id.button_not, R.id.button_zhiwen, R.id.button_1, R.id.button_send_notice,R.id.button_camera})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.button_local:
@@ -129,11 +129,22 @@ public class Fragment_two extends Fragment {
                 localBroadcastManager.sendBroadcast(intent);//发送广播
                 break;
             case R.id.button_not:
+                /**
+                 * 通知的管理对象
+                 */
+                NotificationManager manager;
+                /**
+                 * 通知的id
+                 */
+                int notification_id = 1;
+                //通知的管理对象
+                manager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+
                 Notification.Builder builder = new Notification.Builder(getContext());
                 //不设置图标就不会有通知的显示
                 builder.setSmallIcon(R.mipmap.ic_launcher);
                 builder.setTicker("World");
-                builder.setWhen(System.currentTimeMillis());
+                builder.setWhen(System.currentTimeMillis());//创建的时间
                 builder.setContentTitle("标题栏");
                 builder.setContentText("通知需要显示的内容");
 
@@ -166,6 +177,7 @@ public class Fragment_two extends Fragment {
                  表示当前服务是前台服务，简单通知。默认
                  */
                 notification.flags |= Notification.FLAG_AUTO_CANCEL;// 点击通知的时候cancel掉
+                //显示通知
                 manager.notify(notification_id, notification);
 
 
@@ -218,6 +230,27 @@ public class Fragment_two extends Fragment {
                 Intent intent1 = new Intent(action);
                 getContext().sendBroadcast(intent1);
                 break;
+            case R.id.button_send_notice:
+                Intent intent_notification = new Intent(getContext(), NotificationActivity.class);
+                //相当于延时的intent
+                PendingIntent pi = PendingIntent.getActivity(getContext(), 0, intent_notification, 0);
+
+                NotificationManager manager_natification = (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+                Notification notification1 = new NotificationCompat.Builder(getContext())
+                        .setContentTitle("标题")
+                        .setContentText("内容")
+                        .setWhen(System.currentTimeMillis())
+                        .setSmallIcon(R.mipmap.ic_launcher)
+                        .setContentIntent(pi)//设置点击的意图
+                        .setAutoCancel(true)//点击就能取消
+                        .build();
+                manager_natification.notify(2, notification1);
+
+                break;
+            case R.id.button_camera:
+                Intent intent2 = new Intent(getContext(), CameraActivity.class);
+                startActivity(intent2);
+                break;
             default:
         }
     }
@@ -229,6 +262,8 @@ public class Fragment_two extends Fragment {
         FingerprintManagerCompat.from(getContext()).authenticate(null, 0, null, new MyCallBack(), null);
         showCustomizeDialog(customizeDialog);
     }
+
+
 
     /**
      * 指纹识别的回调

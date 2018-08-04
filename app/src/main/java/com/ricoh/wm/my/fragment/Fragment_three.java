@@ -4,6 +4,7 @@ package com.ricoh.wm.my.fragment;
 import android.Manifest;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -23,6 +24,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.ricoh.wm.my.R;
+import com.ricoh.wm.my.activity.WebViewActivity;
 import com.ricoh.wm.my.utils.MyDbHelper;
 
 import java.util.ArrayList;
@@ -44,6 +46,8 @@ public class Fragment_three extends Fragment {
     Button btDb;
     @Bind(R.id.add_db)
     Button add_db;
+    @Bind(R.id.btn_webview)
+    Button btn_webview;
     @Bind(R.id.contacts_view)
     ListView contactsView;
 
@@ -155,7 +159,7 @@ public class Fragment_three extends Fragment {
         ButterKnife.unbind(this);
     }
 
-    @OnClick({R.id.bt_shock, R.id.bt_db,R.id.add_db})
+    @OnClick({R.id.bt_shock, R.id.bt_db,R.id.add_db,R.id.btn_webview})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.bt_shock:
@@ -175,6 +179,10 @@ public class Fragment_three extends Fragment {
             case R.id.add_db:
                 add_data();
 //                update_data();
+                break;
+            case R.id.btn_webview:
+                Intent intent = new Intent(getContext(),WebViewActivity.class);
+                startActivity(intent);
                 break;
         }
 

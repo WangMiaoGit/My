@@ -17,6 +17,10 @@
     <!-- 读取联系人 -->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -38,6 +42,7 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".mvp.MvpActivity" />
         <activity android:name=".activity.NewViewActivity" />
+        <activity android:name=".activity.WebViewActivity" />
 
         <receiver
             android:name=".broadcastreceiver.BootCompleteReceiver"
@@ -64,7 +69,20 @@
             android:name=".contentprovider.MyContentProvider"
             android:authorities="com.ricoh.wm.my.contentprovider"
             android:enabled="true"
-            android:exported="true"></provider>
+            android:exported="true" />
+
+        <activity android:name=".activity.NotificationActivity" />
+        <activity android:name=".activity.CameraActivity" />
+
+        <provider
+            android:authorities="com.wang"
+            android:name="android.support.v4.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+        </provider>
     </application>
 
 </manifest>

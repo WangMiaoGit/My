@@ -1,5 +1,8 @@
 package com.ricoh.wm.my.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -13,6 +16,7 @@ import android.widget.Toast;
 import com.ricoh.wm.my.R;
 import com.ricoh.wm.my.interfaces.MyService;
 import com.ricoh.wm.my.model.User;
+import com.ricoh.wm.my.update.UpdateService;
 import com.ricoh.wm.my.utils.EncrypAESUtil;
 
 import java.util.List;
@@ -29,6 +33,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class LoginActivity extends BaseActivity {
 
 
+    private static final String TAG = "LoginActivity";
+
     @Bind(R.id.etName)
     EditText etName;
     @Bind(R.id.etPassword)
@@ -37,7 +43,7 @@ public class LoginActivity extends BaseActivity {
     Button btnLogin;
     @Bind(R.id.checkBox)
     CheckBox checkBox;
-
+    Button mbtn;
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
@@ -79,8 +85,72 @@ public class LoginActivity extends BaseActivity {
             etName.setText(sharedPreferences.getString("userName", ""));
         }
 
+        mbtn = (Button) findViewById(R.id.mbtn);
+        mbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkVersion();
+            }
+        });
+
+//        checkVersion();
     }
 
+
+    /**
+     * 检查是否有新版本  发请求给服务器  获取版本号  判断是否更新
+     */
+    private void checkVersion() {
+
+
+        /**
+         * 访问网络  判断是否更新  如果更新   执行下面的操作
+         */
+
+
+        // 这里的属性可以一直设置，因为每次设置后返回的是一个builder对象
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        // 设置提示框的标题
+        builder.setTitle("版本升级").
+                // 设置提示框的图标
+                        setIcon(R.mipmap.ic_launcher).
+                // 设置要显示的信息
+                        setMessage("发现新版本！请及时更新").
+                // 设置确定按钮
+                        setPositiveButton("确定", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        /**
+                         * 封装好的更新       点击确认  启动服务  更新操作
+                         */
+                        Intent intent = new Intent(LoginActivity.this, UpdateService.class);
+                        intent.putExtra("lastVersion", "4.2.2");
+                        startService(intent);
+                    }
+                }).
+
+                // 设置取消按钮,null是什么都不做，现在直接关闭
+                        setNegativeButton("取消", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        LoginActivity.this.finish();
+                    }
+                });
+
+        // 生成对话框
+        AlertDialog alertDialog = builder.create();
+        /**
+         * 只有点击两个按钮才能取消对话框
+         */
+        alertDialog.setCancelable(false);
+        // 显示对话框
+        alertDialog.show();
+
+
+    }
 
     @OnClick(R.id.btnLogin)
     public void onViewClicked() {
